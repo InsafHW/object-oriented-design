@@ -16,31 +16,31 @@ void PlayWithDuck(Duck* duck)
     duck->Dance();
 }
 
+void MakeMultipleFlies(Duck* duck)
+{
+    for (int i = 0; i < 5; i++)
+    {
+        duck->Fly();
+    }
+}
+
 int main()
 {
-    vector<Duck*> ducks { new MallardDuck(), new RedheadDuck(), new DecoyDuck(), new RubberDuck() };
+    ModelDuck modelDuck;
+    PlayWithDuck(&modelDuck);
 
-    std::for_each(
-        ducks.begin(),
-        ducks.end(), 
-        [](Duck* duck) 
-        {
-            PlayWithDuck(duck);
-        }
-    );
+    modelDuck.SetDanceBehavior(make_unique<MinuetDance>());
+    modelDuck.SetFlyBehavior(make_unique<FlyWithWings>());
+    modelDuck.SetQuackBehavior(make_unique<SqueakBehavior>());
+    PlayWithDuck(&modelDuck);
 
     std::cout << std::endl << "Checking flies count:" << std::endl;
     MallardDuck mallardDuck;
-    for (int i = 0; i < 5; i++)
-    {
-        mallardDuck.Fly();
-    }
+    MakeMultipleFlies(&mallardDuck);
+
     mallardDuck.SetFlyBehavior(make_unique<FlyNoWay>());
     mallardDuck.SetFlyBehavior(make_unique<FlyWithWings>());
     std::cout << "Reset flies count" << std::endl;
-    for (int i = 0; i < 5; i++)
-    {
-        mallardDuck.Fly();
-    }
+    MakeMultipleFlies(&mallardDuck);
     return 0;
 }

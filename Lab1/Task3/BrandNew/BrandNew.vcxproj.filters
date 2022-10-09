@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Condiments">
+      <UniqueIdentifier>{b4cbf501-c802-4a28-ba0c-57683fabd3f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Beverages">
+      <UniqueIdentifier>{3e04c539-0cdc-4411-bf94-0e50ac973fcd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BrandNew.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IBeverage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CBeverage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCondimentDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tea.h">
+      <Filter>Beverages</Filter>
+    </ClInclude>
+    <ClInclude Include="Milkshake.h">
+      <Filter>Beverages</Filter>
+    </ClInclude>
+    <ClInclude Include="Coffee.h">
+      <Filter>Beverages</Filter>
+    </ClInclude>
+    <ClInclude Include="Cinamon.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Lemon.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="IceCubes.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Syrup.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="CoconutFlakes.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="ChocolateCrumbs.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Cream.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Chocolate.h">
+      <Filter>Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Liquor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

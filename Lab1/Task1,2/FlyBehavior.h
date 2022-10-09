@@ -18,7 +18,13 @@ class FlyNoWay : public IFlyBehavior {
 class FlyWithWings : public IFlyBehavior {
 	void Fly() override 
 	{
-		std::cout << "Fly with wings " << ++m_count << " times" << std::endl;
+		IncrementFliesCount();
+		std::cout << "Fly with wings " << m_count << " times" << std::endl;
+	}
+
+	void IncrementFliesCount()
+	{
+		m_count++;
 	}
 
 	int GetFliesCount()
