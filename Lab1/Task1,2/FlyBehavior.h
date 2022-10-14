@@ -21,16 +21,11 @@ class FlyWithWings : public IFlyBehavior {
 		IncrementFliesCount();
 		std::cout << "Fly with wings " << m_count << " times" << std::endl;
 	}
-
+private:
 	void IncrementFliesCount()
 	{
 		m_count++;
 	}
 
-	int GetFliesCount()
-	{
-		return m_count;
-	}
-private:
 	int m_count = 0;
 };

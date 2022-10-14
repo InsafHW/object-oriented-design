@@ -9,7 +9,7 @@ enum class TeaType
 	Puer
 };
 
-std::string GetTeaTypeName(TeaType& type)
+inline std::string GetTeaTypeName(TeaType& type)
 {
 	switch (type)
 	{
@@ -22,7 +22,7 @@ std::string GetTeaTypeName(TeaType& type)
 	case TeaType::Puer:
 		return "Puer";
 	default:
-		throw "Unknown tea type";
+		throw std::invalid_argument("Unknown tea type");
 	}
 }
 

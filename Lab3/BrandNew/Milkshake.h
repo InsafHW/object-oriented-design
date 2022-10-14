@@ -8,7 +8,7 @@ enum class MilkshakePortion
 	Large
 };
 
-std::string GetMilshakePortionName(MilkshakePortion& portion)
+inline std::string GetMilshakePortionName(MilkshakePortion& portion)
 {
 	switch (portion)
 	{
@@ -19,7 +19,7 @@ std::string GetMilshakePortionName(MilkshakePortion& portion)
 	case MilkshakePortion::Small:
 		return "Small";
 	default:
-		throw "Unknown milkshake portion type";
+		throw std::invalid_argument("Unknown milkshake portion type");
 	}
 }
 
@@ -42,7 +42,7 @@ public:
 		case MilkshakePortion::Large:
 			return 80;
 		default:
-			throw "Unknown milkshake portion type";
+			throw std::invalid_argument("Unknown milkshake portion type");
 		}
 	}
 private:

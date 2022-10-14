@@ -7,7 +7,7 @@ enum class CoffeePortion
 	Double
 };
 
-std::string GetCoffeePortionName(CoffeePortion& portion)
+inline std::string GetCoffeePortionName(CoffeePortion& portion)
 {
 	return portion == CoffeePortion::Double ? "Double" : "Standart";
 }

@@ -12,6 +12,7 @@ std::string GetLiquorTypeName(LiquorType type)
 	return type == LiquorType::Chocolate ? "Chocolate" : "Nutty";
 }
 
+// Ликер
 class CLiquor: public CCondimentDecorator
 {
 public:

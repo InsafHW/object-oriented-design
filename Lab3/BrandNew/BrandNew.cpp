@@ -70,7 +70,7 @@ void Task2()
 
 int main()
 {
-	Task2();
+	Task1();
 	return 0;
 }
-
+	
