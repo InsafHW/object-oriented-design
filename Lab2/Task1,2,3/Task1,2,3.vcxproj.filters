@@ -13,18 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Ovservers">
+      <UniqueIdentifier>{083e3061-ec76-4b78-bdf5-39509dbfe409}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Task1.cpp">
+    <ClCompile Include="Task1,2,3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Observer.h">
+    <ClInclude Include="IObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WeatherStation.h">
+    <ClInclude Include="IObservable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CObservable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeatherStation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDisplay.h">
+      <Filter>Ovservers</Filter>
+    </ClInclude>
+    <ClInclude Include="CStatsDisplay.h">
+      <Filter>Ovservers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

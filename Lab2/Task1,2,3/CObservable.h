@@ -1,26 +1,6 @@
-#pragma once
-
+#include "IObservable.h"
 #include <set>
-#include <functional>
 #include <map>
-
-template <typename T>
-class IObserver
-{
-public:
-	virtual void Update(T const& data) = 0;
-	virtual ~IObserver() = default;
-};
-
-template <typename T>
-class IObservable
-{
-public:
-	virtual ~IObservable() = default;
-	virtual void RegisterObserver(IObserver<T>& observer, int priority) = 0;
-	virtual void NotifyObservers() = 0;
-	virtual void RemoveObserver(IObserver<T>& observer) = 0;
-};
 
 template <class T>
 class CObservable : public IObservable<T>
@@ -28,7 +8,7 @@ class CObservable : public IObservable<T>
 public:
 	typedef IObserver<T> ObserverType;
 
-	void RegisterObserver(ObserverType& observer, int priority) override
+	void RegisterObserver(ObserverType& observer, int priority = 0) override
 	{
 		m_observers[priority].insert(&observer);
 	}
@@ -43,7 +23,7 @@ public:
 		{
 			for (auto innerIt = it->second.begin(); innerIt != it->second.end(); innerIt++)
 			{
-				(* innerIt)->Update(data);
+				(*innerIt)->Update(data);
 			}
 		}
 	}
@@ -62,10 +42,10 @@ public:
 			}
 		}
 	}
-
 protected:
-	virtual T GetChangedData()const = 0;
-
+	// Классы-наследники должны перегрузить данный метод, 
+	// в котором возвращать информацию об изменениях в объекте
+	virtual T GetChangedData() const = 0;
 private:
 	std::map<int, std::set<ObserverType*>> m_observers;
 };
