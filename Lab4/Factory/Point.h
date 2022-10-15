@@ -6,11 +6,11 @@ public:
 		:m_x(x),
 		m_y(y)
 	{}
-	double GetX()
+	double GetX() const
 	{
 		return m_x;
 	}
-	double GetY()
+	double GetY() const
 	{
 		return m_y;
 	}

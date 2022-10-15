@@ -2,6 +2,7 @@
 #include "CShape.h"
 #include "Point.h"
 #include <iostream>
+#include <vector>
 
 class CRegularPolygon: public CShape
 {
@@ -12,19 +13,37 @@ public:
 		m_center(center),
 		m_radius(radius)
 	{}
-	void Draw(ICanvas&) const override
+	void Draw(ICanvas* canvas) const override
 	{
-		std::cout << "Draw regular polygon" << std::endl;
+		double centerAngle = 2 * 3.14 / m_vertexCount;
+
+		std::vector<Point> points;
+
+		for (int i = 0; i < m_vertexCount; i++)
+		{
+			Point point(
+				m_center.GetX() + m_radius * std::sin(centerAngle * i),
+				m_center.GetY() + m_radius * std::cos(centerAngle * i)
+			);
+			points.push_back(point);
+		}
+		points.push_back(points[0]);
+
+		canvas->SetColor(GetColor());
+		for (size_t i = 1; i < points.size(); i++)
+		{
+			canvas->DrawLine(points[i], points[i - 1]);
+		}
 	}
 	int GetVertexCount()
 	{
 		return m_vertexCount;
 	}
-	Point GetCenter()
+	Point GetCenter() const
 	{
 		return m_center;
 	}
-	double GetRadius()
+	double GetRadius() const
 	{
 		return m_radius;
 	}

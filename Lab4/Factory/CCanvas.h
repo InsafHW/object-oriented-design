@@ -1,28 +1,68 @@
 #pragma once
 #include "ICanvas.h"
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 class CCanvas: public ICanvas
 {
 public:
-	CCanvas(double window)
+	CCanvas(sf::RenderWindow* window)
 		:m_window(window)
 	{}
-	void SetColor(std::string color) override
+	void SetColor(Color color) override
 	{
-		m_color = color;
-		std::cout << "Setted color " << color << std::endl;
+		switch (color)
+		{
+		case Color::Green:
+			m_color = sf::Color::Green;
+			break;
+		case Color::Red:
+			m_color = sf::Color::Red;
+			break;
+		case Color::Blue:
+			m_color = sf::Color::Blue;
+			break;
+		case Color::Yellow:
+			m_color = sf::Color::Yellow;
+			break;
+		case Color::Pink:
+			m_color = sf::Color::Magenta;
+			break;
+		case Color::Black:
+			m_color = sf::Color::Black;
+			break;
+		default:
+			break;
+		}
 	}
-	void DrawLine(double from, double to) override
+	void DrawLine(Point from, Point to) override
 	{
-		std::cout << "From: " << from << ". To: " << to << std::endl;
+		sf::VertexArray lines(sf::LinesStrip, 2);
+		lines[0].position = sf::Vector2f(from.GetX(), from.GetY());
+		lines[0].color = m_color;
+		lines[1].position = sf::Vector2f(to.GetX(), to.GetY());
+		lines[1].color = m_color;
+		m_window->draw(lines);
 	}
-	void DrawEllipse(double centerX, double centerY, double width, double height)
+	void DrawEllipse(Point center, double horizontalRadius, double verticalRadius)
 	{
-		std::cout << "CenterX: " << centerX<< ". CenterY: " << centerX << ". Width: " << width << ". Height: " << height << std::endl;
+		const double PI = 3.14;
+		const int quality = 70;
+		sf::ConvexShape ellipse;
+		ellipse.setPointCount(quality);
+		for (int i = 0; i < quality; i++)
+		{
+			float rad = (360 / quality * i) / (360 / PI / 2);
+			float x = cos(rad) * horizontalRadius;
+			float y = sin(rad) * verticalRadius;
+			ellipse.setPoint(i, sf::Vector2f(x, y));
+		}
+		ellipse.setPosition(center.GetX(), center.GetY());
+		ellipse.setFillColor(m_color);
+		m_window->draw(ellipse);
 	}
 private:
-	std::string m_color;
-	double m_window;
+	sf::Color m_color;
+	sf::RenderWindow* m_window;
 };
 

@@ -6,6 +6,7 @@
 
 class CPictureDraft
 {
+public:
 	std::unique_ptr<IShape>& GetShape(int index)
 	{
 		try

@@ -15,7 +15,15 @@ public:
 		std::string line;
 		while (getline(stream, line))
 		{
-			std::cout << line;
+			try
+			{
+				auto shape = m_factory.CreateShape(line);
+				draft.AddShape(std::move(shape));
+			}
+			catch (std::invalid_argument const& e) 
+			{
+				std::cout << e.what() << std::endl;
+			}
 		}
 		return draft;
 	}

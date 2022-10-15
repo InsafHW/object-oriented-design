@@ -5,43 +5,129 @@
 #include "CEllipse.h"
 #include "CRegularPolygon.h"
 #include "Color.h"
+#include <vector>
+
+const std::string RECTANGLE = "rectangle";
+const std::string TRIANGLE = "triangle";
+const std::string ELLIPSE = "ellipse";
+const std::string POLYGON = "polygon";
+
+const std::string GREEN = "green";
+const std::string RED = "red";
+const std::string BLUE = "blue";
+const std::string YELLOW = "yellow";
+const std::string PINK = "pink";
+const std::string BLACK = "black";
 
 class CShapeFactory: public IShapeFactory
 {
 public:
-	std::unique_ptr<CShape> CreateShape(std::string description) const override
+	std::unique_ptr<IShape> CreateShape(std::string description) const override
 	{
-		if (description == "Rectangle")
+		auto params = GetParams(description);
+
+		if (params.size() < 2)
 		{
-			Point topLeft(0, 0);
+			throw std::invalid_argument("Invalid input");
+		}
+
+		const auto type = params[0];
+		const auto color = GetColor(params[1]);
+
+		if (type == RECTANGLE)
+		{
+			if (params.size() < 6)
+			{
+				throw std::invalid_argument("Invalid input");
+			}
 			return std::make_unique<CRectangle>(
-				Color::Red, topLeft, 10, 20
+				color, 
+				Point(std::stod(params[2]),
+				std::stod(params[3])),
+				std::stod(params[4]),
+				std::stod(params[5])
 			);
 		}
-		if (description == "Triangle")
+		if (type == TRIANGLE)
 		{
-			Point left(0, 0);
-			Point middle(10, 20);
-			Point right(3, 0);
+			if (params.size() < 8)
+			{
+				throw std::invalid_argument("Invalid input");
+			}
 			return std::make_unique<CTriangle>(
-				Color::Black, left, middle, right
+				color, 
+				Point(std::stod(params[2]), std::stod(params[3])),
+				Point(std::stod(params[4]), std::stod(params[5])),
+				Point(std::stod(params[6]), std::stod(params[7]))
 			);
 		}
-		if (description == "Ellipse")
+		if (type == ELLIPSE)
 		{
-			Point center(0, 0);
+			if (params.size() < 6)
+			{
+				throw std::invalid_argument("Invalid input");
+			}
 			return std::make_unique<CEllipse>(
-				Color::Green, center, 10, 20
+				color,
+				Point(std::stod(params[2]), std::stod(params[3])),
+				std::stod(params[4]),
+				std::stod(params[5])
 			);
 		}
-		if (description == "Polygon")
+		if (type == POLYGON)
 		{
-			Point center(0, 0);
+			if (params.size() < 6)
+			{
+				throw std::invalid_argument("Invalid input");
+			}
 			return std::make_unique<CRegularPolygon>(
-				Color::Pink, 6, center, 10
+				color,
+				std::stoi(params[2]),
+				Point(std::stod(params[3]), std::stod(params[4])),
+				std::stod(params[5])
 			);
 		}
 		throw std::invalid_argument("Unknown shape type");
+	}
+private:
+	std::vector<std::string> GetParams(std::string description) const
+	{
+		std::vector<std::string> params;
+		std::string line;
+		std::istringstream stream(description);
+		while (std::getline(stream, line, ' '))
+		{	
+			params.push_back(line);
+		}
+		return params;
+	}
+	Color GetColor(std::string color) const
+	{
+		if (color == GREEN)
+		{
+			return Color::Green;
+		}
+		if (color == RED)
+		{
+			return Color::Red;
+		}
+		if (color == BLUE)
+		{
+			return Color::Blue;
+		}
+		if (color == YELLOW)
+		{
+			return Color::Yellow;
+		}
+		if (color == PINK)
+		{
+			return Color::Pink;
+		}
+		if (color == BLACK)
+		{
+			return Color::Black;
+		}
+		throw std::invalid_argument("unknown color");
 	}
 };
 

@@ -12,9 +12,10 @@ public:
 		m_horizontalRadius(horizontalRadius),
 		m_verticalRadius(verticalRadius)
 	{}
-	void Draw(ICanvas&) const override
+	void Draw(ICanvas* canvas) const override
 	{
-		std::cout << "Draw ellipse";
+		canvas->SetColor(GetColor());
+		canvas->DrawEllipse(m_center, m_horizontalRadius, m_verticalRadius);
 	}
 	Point GetCenter()
 	{

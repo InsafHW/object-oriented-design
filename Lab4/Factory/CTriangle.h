@@ -12,9 +12,12 @@ public:
 		m_middle(middle),
 		m_right(right)
 	{}
-	void Draw(ICanvas&) const override
+	void Draw(ICanvas* canvas) const override
 	{
-		std::cout << "Draw triangle" << std::endl;
+		canvas->SetColor(GetColor());
+		canvas->DrawLine(m_left, m_middle);
+		canvas->DrawLine(m_middle, m_right);
+		canvas->DrawLine(m_right, m_left);
 	}
 	Point GetVertex1()
 	{
