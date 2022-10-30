@@ -61,11 +61,19 @@ private:
 		{
 			throw std::invalid_argument("Invalid input");
 		}
+		const auto topLeftX = std::stod(params[2]);
+		const auto topLeftY = std::stod(params[3]);
+		const auto width = std::stod(params[4]);
+		const auto height = std::stod(params[5]);
+		if (width <= 0 || height <= 0)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
 		return std::make_unique<CRectangle>(
 			color,
-			Point(std::stod(params[2]), std::stod(params[3])),
-			std::stod(params[4]),
-			std::stod(params[5])
+			Point(topLeftX, topLeftY),
+			width,
+			height
 		);
 	}
 	std::unique_ptr<IShape> CreateEllipse(Color color, Params params) const
@@ -74,11 +82,19 @@ private:
 		{
 			throw std::invalid_argument("Invalid input");
 		}
+		const auto centerX = std::stod(params[2]);
+		const auto centerY = std::stod(params[3]);
+		const auto horizontalRadius = std::stod(params[4]);
+		const auto verticalRadius = std::stod(params[5]);
+		if (horizontalRadius <= 0 || verticalRadius <= 0)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
 		return std::make_unique<CEllipse>(
 			color,
-			Point(std::stod(params[2]), std::stod(params[3])),
-			std::stod(params[4]),
-			std::stod(params[5])
+			Point(centerX, centerY),
+			horizontalRadius,
+			verticalRadius
 		);
 	}
 	std::unique_ptr<IShape> CreateTriangle(Color color, Params params) const
@@ -100,11 +116,19 @@ private:
 		{
 			throw std::invalid_argument("Invalid input");
 		}
+		const auto vertexCount = std::stod(params[2]);
+		const auto centerX = std::stod(params[3]);
+		const auto centerY = std::stod(params[4]);
+		const auto radius = std::stod(params[5]);
+		if (vertexCount <= 0 || radius <= 0)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
 		return std::make_unique<CRegularPolygon>(
 			color,
-			std::stoi(params[2]),
-			Point(std::stod(params[3]), std::stod(params[4])),
-			std::stod(params[5])
+			vertexCount,
+			Point(centerX, centerY),
+			radius
 		);
 	}
 

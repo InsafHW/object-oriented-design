@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{263b29e5-df86-41d0-8032-b531667c8423}</ProjectGuid>
+    <ProjectGuid>{4b337ed5-47cd-4cab-833c-55b5379ec902}</ProjectGuid>
     <RootNamespace>FactoryTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -140,6 +140,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FactoryTests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Factory\CCanvas.h" />
+    <ClInclude Include="..\Factory\CDesigner.h" />
+    <ClInclude Include="..\Factory\CEllipse.h" />
+    <ClInclude Include="..\Factory\Color.h" />
+    <ClInclude Include="..\Factory\CPainter.h" />
+    <ClInclude Include="..\Factory\CPictureDraft.h" />
+    <ClInclude Include="..\Factory\CRectangle.h" />
+    <ClInclude Include="..\Factory\CRegularPolygon.h" />
+    <ClInclude Include="..\Factory\CShape.h" />
+    <ClInclude Include="..\Factory\CShapeFactory.h" />
+    <ClInclude Include="..\Factory\CTriangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

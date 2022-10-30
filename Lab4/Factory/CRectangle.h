@@ -40,6 +40,14 @@ public:
 			m_topLeft.GetY() + m_height
 		);
 	}
+	double GetWidth() const
+	{
+		return m_width;
+	}
+	double GetHeight() const
+	{
+		return m_height;
+	}
 private:
 	double m_width;
 	double m_height;
