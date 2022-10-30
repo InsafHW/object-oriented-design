@@ -146,8 +146,6 @@
     <ClInclude Include="CObservable.h" />
     <ClInclude Include="CStatsDisplay.h" />
     <ClInclude Include="CWeatherStation.h" />
-    <ClInclude Include="IObservable.h" />
-    <ClInclude Include="IObserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

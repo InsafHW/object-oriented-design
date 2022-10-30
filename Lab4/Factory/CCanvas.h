@@ -6,8 +6,8 @@
 class CCanvas: public ICanvas
 {
 public:
-	CCanvas(sf::RenderWindow* window)
-		:m_window(window)
+	CCanvas(sf::RenderTarget* renderTarget)
+		:m_renderTarget(renderTarget)
 	{}
 	void SetColor(Color color) override
 	{
@@ -42,7 +42,7 @@ public:
 		lines[0].color = m_color;
 		lines[1].position = sf::Vector2f(to.GetX(), to.GetY());
 		lines[1].color = m_color;
-		m_window->draw(lines);
+		m_renderTarget->draw(lines);
 	}
 	void DrawEllipse(Point center, double horizontalRadius, double verticalRadius)
 	{
@@ -59,10 +59,10 @@ public:
 		}
 		ellipse.setPosition(center.GetX(), center.GetY());
 		ellipse.setFillColor(m_color);
-		m_window->draw(ellipse);
+		m_renderTarget->draw(ellipse);
 	}
 private:
 	sf::Color m_color;
-	sf::RenderWindow* m_window;
+	sf::RenderTarget* m_renderTarget;
 };
 

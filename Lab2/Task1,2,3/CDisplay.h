@@ -2,7 +2,6 @@
 #include <iostream>
 #include "IObserver.h"
 #include "CWeatherStation.h"
-#include "IObservable.h"
 
 class CDisplay: public IObserver<SWeatherInfo>
 {

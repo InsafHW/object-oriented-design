@@ -17,7 +17,9 @@ struct DataInfo
 {
 	double min = DBL_MAX;
 	double max = DBL_MIN;
-	double acc = 0;
+	int acc = 0;
+
+	// TODO: добавить функционал сюда
 };
 
 inline std::string GetDataTypeText(DataType& type)
@@ -40,10 +42,10 @@ class CStatsDisplay : public IObserver<SWeatherInfo>
 private:
 	void Update(SWeatherInfo const& data) override
 	{
+		++m_countAcc;
 		UpdateData(m_temperature, data.temperature, DataType::Temperature);
 		UpdateData(m_humidity, data.humidity, DataType::Humidity);
 		UpdateData(m_pressure, data.pressure, DataType::Pressure);
-		++m_countAcc;
 	}
 
 	void UpdateData(DataInfo& data, double newData, DataType type)

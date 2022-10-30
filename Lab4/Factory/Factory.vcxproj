@@ -160,7 +160,7 @@
   <ItemGroup>
     <ClInclude Include="CCanvas.h" />
     <ClInclude Include="CDesigner.h" />
-    <ClInclude Include="CDrawer.h" />
+    <ClInclude Include="CPainter.h" />
     <ClInclude Include="CEllipse.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CPictureDraft.h" />

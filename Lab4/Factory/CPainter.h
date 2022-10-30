@@ -3,14 +3,19 @@
 #include "CPictureDraft.h"
 #include "ICanvas.h"
 
-class CDrawer
+class CPainter
 {
 public:
-	CDrawer()
+    CPainter()
 	{
         m_window = new sf::RenderWindow;
         m_canvas = new CCanvas(m_window);
 	}
+    ~CPainter()
+    {
+        delete m_window;
+        delete m_canvas;
+    }
 	void DrawPicture(CPictureDraft& draft)
 	{
         m_window->create(sf::VideoMode(800, 600), "");

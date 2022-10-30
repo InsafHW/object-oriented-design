@@ -19,10 +19,10 @@ const std::string YELLOW = "yellow";
 const std::string PINK = "pink";
 const std::string BLACK = "black";
 
-class CShapeFactory: public IShapeFactory
+class CShapeFactory : public IShapeFactory
 {
 public:
-	std::unique_ptr<IShape> CreateShape(std::string description) const override
+	std::unique_ptr<IShape> CreateShape(const std::string& description) const override
 	{
 		auto params = GetParams(description);
 
@@ -36,60 +36,78 @@ public:
 
 		if (type == RECTANGLE)
 		{
-			if (params.size() < 6)
-			{
-				throw std::invalid_argument("Invalid input");
-			}
-			return std::make_unique<CRectangle>(
-				color, 
-				Point(std::stod(params[2]),
-				std::stod(params[3])),
-				std::stod(params[4]),
-				std::stod(params[5])
-			);
+			return CreateRectangle(color, params);
 		}
 		if (type == TRIANGLE)
 		{
-			if (params.size() < 8)
-			{
-				throw std::invalid_argument("Invalid input");
-			}
-			return std::make_unique<CTriangle>(
-				color, 
-				Point(std::stod(params[2]), std::stod(params[3])),
-				Point(std::stod(params[4]), std::stod(params[5])),
-				Point(std::stod(params[6]), std::stod(params[7]))
-			);
+			return CreateTriangle(color, params);
 		}
 		if (type == ELLIPSE)
 		{
-			if (params.size() < 6)
-			{
-				throw std::invalid_argument("Invalid input");
-			}
-			return std::make_unique<CEllipse>(
-				color,
-				Point(std::stod(params[2]), std::stod(params[3])),
-				std::stod(params[4]),
-				std::stod(params[5])
-			);
+			return CreateEllipse(color, params);
 		}
 		if (type == POLYGON)
 		{
-			if (params.size() < 6)
-			{
-				throw std::invalid_argument("Invalid input");
-			}
-			return std::make_unique<CRegularPolygon>(
-				color,
-				std::stoi(params[2]),
-				Point(std::stod(params[3]), std::stod(params[4])),
-				std::stod(params[5])
-			);
+			return CreateRegularPolygon(color, params);
 		}
 		throw std::invalid_argument("Unknown shape type");
 	}
 private:
+	typedef const std::vector<std::string>& Params;
+
+	std::unique_ptr<IShape> CreateRectangle(Color color, Params params) const
+	{
+		if (params.size() < 6)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
+		return std::make_unique<CRectangle>(
+			color,
+			Point(std::stod(params[2]), std::stod(params[3])),
+			std::stod(params[4]),
+			std::stod(params[5])
+		);
+	}
+	std::unique_ptr<IShape> CreateEllipse(Color color, Params params) const
+	{
+		if (params.size() < 6)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
+		return std::make_unique<CEllipse>(
+			color,
+			Point(std::stod(params[2]), std::stod(params[3])),
+			std::stod(params[4]),
+			std::stod(params[5])
+		);
+	}
+	std::unique_ptr<IShape> CreateTriangle(Color color, Params params) const
+	{
+		if (params.size() < 8)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
+		return std::make_unique<CTriangle>(
+			color,
+			Point(std::stod(params[2]), std::stod(params[3])),
+			Point(std::stod(params[4]), std::stod(params[5])),
+			Point(std::stod(params[6]), std::stod(params[7]))
+		);
+	}
+	std::unique_ptr<IShape> CreateRegularPolygon(Color color, Params params) const
+	{
+		if (params.size() < 6)
+		{
+			throw std::invalid_argument("Invalid input");
+		}
+		return std::make_unique<CRegularPolygon>(
+			color,
+			std::stoi(params[2]),
+			Point(std::stod(params[3]), std::stod(params[4])),
+			std::stod(params[5])
+		);
+	}
+
 	std::vector<std::string> GetParams(std::string description) const
 	{
 		std::vector<std::string> params;

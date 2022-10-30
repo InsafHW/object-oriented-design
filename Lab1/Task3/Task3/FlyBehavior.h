@@ -9,12 +9,17 @@ void FlyNoWay()
 	std::cout << std::endl;
 }
 
-std::function<void> FlyWithWings()
+void FlyWithWings()
 {
-    int count = 0;
-    auto x = [count]() mutable {
-        count++;
+    auto fn = []() mutable
+    {
+        int count = 0;
+        auto innerFn = [count]() mutable
+        {
+            count++;
+        };
+        innerFn();
         std::cout << "Fly with wings " << count << " times" << std::endl;
     };
-    return x;
+    fn();
 }

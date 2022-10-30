@@ -41,5 +41,8 @@
     <ClInclude Include="PriorityObservableTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SafeDeleteTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

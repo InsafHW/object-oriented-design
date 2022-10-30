@@ -34,9 +34,14 @@ int main()
     PlayWithDuck(&mallardDuck);
 
     mallardDuck.SetDanceBehavior(MinuetDance);
-    mallardDuck.SetFlyBehavior(FlyWithWings());
+    mallardDuck.SetFlyBehavior(FlyWithWings);
     mallardDuck.SetQuackBehavior(SqueakBehavior);
     PlayWithDuck(&mallardDuck);
+    mallardDuck.Fly();
+    mallardDuck.Fly();
+    mallardDuck.Fly();
+    mallardDuck.Fly();
+    mallardDuck.Fly();
 
     return 0;
 }

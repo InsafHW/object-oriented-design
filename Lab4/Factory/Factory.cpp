@@ -2,7 +2,7 @@
 #include "CDesigner.h"
 #include "CShapeFactory.h"
 #include "CCanvas.h"
-#include "CDrawer.h"
+#include "CPainter.h"
 
 using namespace std;
 
@@ -10,8 +10,8 @@ int main()
 {
     CShapeFactory shapeFactory;
     CDesigner designer(shapeFactory);
-    CDrawer drawer;
+    CPainter painter;
 
     auto draft = designer.CreateDraft(std::cin);
-    drawer.DrawPicture(draft);
+    painter.DrawPicture(draft);
 }

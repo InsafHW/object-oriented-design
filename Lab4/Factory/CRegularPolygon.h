@@ -15,7 +15,8 @@ public:
 	{}
 	void Draw(ICanvas* canvas) const override
 	{
-		double centerAngle = 2 * 3.14 / m_vertexCount;
+		const double PI = 3.14;
+		double centerAngle = 2 * PI / m_vertexCount;
 
 		std::vector<Point> points;
 
@@ -30,7 +31,7 @@ public:
 		points.push_back(points[0]);
 
 		canvas->SetColor(GetColor());
-		for (size_t i = 1; i < points.size(); i++)
+		for (int i = 1; i < points.size(); i++)
 		{
 			canvas->DrawLine(points[i], points[i - 1]);
 		}

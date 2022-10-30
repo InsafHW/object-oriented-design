@@ -10,7 +10,11 @@ public:
 
 	void RegisterObserver(ObserverType& observer, int priority = 0) override
 	{
-		m_observers[priority].insert(&observer);
+		if (m_observersSet.find(&observer) == m_observersSet.end())
+		{
+			m_observers[priority].insert(&observer);
+			m_observersSet.insert(&observer);
+		}
 	}
 
 	void NotifyObservers() override
@@ -37,6 +41,7 @@ public:
 				if (*innerIt == &observer)
 				{
 					it->second.erase(&observer);
+					m_observersSet.erase(&observer);
 					break;
 				}
 			}
@@ -48,4 +53,5 @@ protected:
 	virtual T GetChangedData() const = 0;
 private:
 	std::map<int, std::set<ObserverType*>> m_observers;
+	std::set<ObserverType*> m_observersSet;
 };

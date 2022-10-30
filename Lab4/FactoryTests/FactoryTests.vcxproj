@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{fe2fb9af-9637-45c2-bc00-795ec4df249c}</ProjectGuid>
-    <RootNamespace>Task123Tests</RootNamespace>
+    <ProjectGuid>{263b29e5-df86-41d0-8032-b531667c8423}</ProjectGuid>
+    <RootNamespace>FactoryTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,17 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Task1,2,3.Tests.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Task1,2,3\CDisplay.h" />
-    <ClInclude Include="..\Task1,2,3\CObservable.h" />
-    <ClInclude Include="..\Task1,2,3\CStatsDisplay.h" />
-    <ClInclude Include="..\Task1,2,3\CWeatherStation.h" />
-    <ClInclude Include="..\Task1,2,3\IObservable.h" />
-    <ClInclude Include="..\Task1,2,3\IObserver.h" />
-    <ClInclude Include="PriorityObservableTest.h" />
-    <ClInclude Include="SafeDeleteTest.h" />
+    <ClCompile Include="FactoryTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
