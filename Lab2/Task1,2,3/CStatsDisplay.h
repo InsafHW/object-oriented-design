@@ -13,15 +13,6 @@ enum class DataType
 	Pressure,
 };
 
-struct DataInfo
-{
-	double min = DBL_MAX;
-	double max = DBL_MIN;
-	int acc = 0;
-
-	// TODO: добавить функционал сюда
-};
-
 inline std::string GetDataTypeText(DataType& type)
 {
 	switch (type)
@@ -37,42 +28,61 @@ inline std::string GetDataTypeText(DataType& type)
 	}
 }
 
+class DataInfo
+{
+public:
+	DataInfo(DataType type)
+		:m_type(type)
+	{}
+
+	void Update(double newData)
+	{
+		m_countAcc++;
+		if (m_min > newData)
+		{
+			m_min = newData;
+		}
+		if (m_max < newData)
+		{
+			m_max = newData;
+		}
+		m_acc += newData;
+		PrintInfo();
+	}
+
+	void PrintInfo()
+	{
+		const std::string typeName = GetDataTypeText(m_type);
+		std::cout << "Max " << typeName << " " << m_max << std::endl;
+		std::cout << "Min " << typeName << " " << m_min << std::endl;
+		std::cout << "Average " << typeName << " " << (m_acc / m_countAcc) << std::endl;
+	}
+private:
+	DataType m_type;
+	double m_min = DBL_MAX;
+	double m_max = DBL_MIN;
+	double m_acc = 0;
+	unsigned m_countAcc = 0;
+};
+
 class CStatsDisplay : public IObserver<SWeatherInfo>
 {
+public:
+	CStatsDisplay()
+	{
+		m_temperature = std::make_unique<DataInfo>(DataType::Temperature);
+		m_humidity = std::make_unique<DataInfo>(DataType::Humidity);
+		m_pressure = std::make_unique<DataInfo>(DataType::Pressure);
+	}
 private:
 	void Update(SWeatherInfo const& data) override
 	{
-		++m_countAcc;
-		UpdateData(m_temperature, data.temperature, DataType::Temperature);
-		UpdateData(m_humidity, data.humidity, DataType::Humidity);
-		UpdateData(m_pressure, data.pressure, DataType::Pressure);
+		m_temperature->Update(data.temperature);
+		m_humidity->Update(data.humidity);
+		m_pressure->Update(data.pressure);
 	}
 
-	void UpdateData(DataInfo& data, double newData, DataType type)
-	{
-		if (data.min > newData)
-		{
-			data.min = newData;
-		}
-		if (data.max < newData)
-		{
-			data.max = newData;
-		}
-		data.acc += newData;
-		PrintDataInfo(data, type);
-	}
-
-	void PrintDataInfo(DataInfo& info, DataType type)
-	{
-		const std::string typeName = GetDataTypeText(type);
-		std::cout << "Max " << typeName << " " << info.max << std::endl;
-		std::cout << "Min " << typeName << " " << info.min << std::endl;
-		std::cout << "Average " << typeName << " " << (info.acc / m_countAcc) << std::endl;
-	}
-
-	DataInfo m_temperature;
-	DataInfo m_humidity;
-	DataInfo m_pressure;
-
-	unsigned m_countAcc = 0;
+	std::unique_ptr<DataInfo> m_temperature;
+	std::unique_ptr<DataInfo> m_humidity;
+	std::unique_ptr<DataInfo> m_pressure;
 };
