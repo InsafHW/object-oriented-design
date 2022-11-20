@@ -3,18 +3,18 @@
 #include "modern_graphics_lib.h"
 #include "shape_drawing_lib.h"
 
-class ModernGraphicsLibAdapter : public graphics_lib::ICanvas
+class ModernGraphicsLibAdapter : public graphics_lib::ICanvas, public modern_graphics_lib::CModernGraphicsRenderer
 {
 public:
-	ModernGraphicsLibAdapter(modern_graphics_lib::CModernGraphicsRenderer& renderer)
-		: m_renderer(renderer)
+	ModernGraphicsLibAdapter(std::ostream& strm)
+		:CModernGraphicsRenderer(strm)
 	{
-		renderer.BeginDraw();
+		BeginDraw();
 	}
 
 	~ModernGraphicsLibAdapter()
 	{
-		m_renderer.EndDraw();
+		EndDraw();
 	}
 
 	void MoveTo(int x, int y) override
@@ -25,10 +25,9 @@ public:
 
 	void LineTo(int x, int y) override
 	{
-		m_renderer.DrawLine(m_startPoint, modern_graphics_lib::CPoint{ x, y });
+		DrawLine(m_startPoint, modern_graphics_lib::CPoint{ x, y });
 	}
 private:
-	modern_graphics_lib::CModernGraphicsRenderer& m_renderer;
 	modern_graphics_lib::CPoint m_startPoint{ 0, 0 };
 };
 
