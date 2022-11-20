@@ -1,7 +1,7 @@
 #pragma once
 #define CATCH_CONFIG_MAIN
 #include "../../catch2/catch.hpp"
-#include "../ClassAdapter/ModernGraphicsLibAdapter.h"
+#include "../WithColors/ModernGraphicsLibAdapter.h"
 
 SCENARIO("Class adapter")
 {
@@ -23,7 +23,9 @@ SCENARIO("Class adapter")
 				adapter.LineTo(10, 10);
 			}
 			REQUIRE(output.str() == "<draw>\n"
-				"  <line fromX=\"0\" fromY=\"0\" toX=\"10\" toY=\"10\"/>\n"
+				"  <line fromX=\"0\" fromY=\"0\" toX=\"10\" toY=\"10\">\n"
+				"    <color r=\"0\" g=\"0\" b=\"0\" a=\"1\" />\n"
+				"  </line>\n"
 				"</draw>\n"
 			);
 		}
@@ -35,9 +37,27 @@ SCENARIO("Class adapter")
 				adapter.LineTo(10, 10);
 			}
 			REQUIRE(output.str() == "<draw>\n"
-				"  <line fromX=\"20\" fromY=\"20\" toX=\"10\" toY=\"10\"/>\n"
+				"  <line fromX=\"20\" fromY=\"20\" toX=\"10\" toY=\"10\">\n"
+				"    <color r=\"0\" g=\"0\" b=\"0\" a=\"1\" />\n"
+				"  </line>\n"
 				"</draw>\n"
 			);
 		}
 	}
+}
+
+TEST_CASE("Setting color")
+{
+	std::ostringstream output;
+	{
+		ModernGraphicsLibAdapter adapter(output);
+		adapter.SetColor(0xFFFFFF);
+		adapter.LineTo(10, 10);
+	}
+	REQUIRE(output.str() == "<draw>\n"
+		"  <line fromX=\"0\" fromY=\"0\" toX=\"10\" toY=\"10\">\n"
+		"    <color r=\"1\" g=\"1\" b=\"1\" a=\"1\" />\n"
+		"  </line>\n"
+		"</draw>\n"
+	);
 }
