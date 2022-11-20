@@ -50,6 +50,8 @@ public:
 		PrintInfo();
 	}
 
+	// если нужно будет изменить формат отображения, то придется продублировать код
+	// в StatsDisplay
 	void PrintInfo()
 	{
 		const std::string typeName = GetDataTypeText(m_type);

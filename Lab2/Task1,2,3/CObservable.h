@@ -34,6 +34,7 @@ public:
 
 	void RemoveObserver(ObserverType& observer) override
 	{
+		// TODO: придумать алгоритм поиска попроще
 		for (auto it = m_observers.begin(); it != m_observers.end(); it++)
 		{
 			for (auto innerIt = it->second.begin(); innerIt != it->second.end(); innerIt++)

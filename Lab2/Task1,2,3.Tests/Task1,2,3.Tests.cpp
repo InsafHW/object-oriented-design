@@ -1,8 +1,19 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#define CATCH_CONFIG_MAIN
 #include <iostream>
 #include <stack>
 #include "../../catch2/catch.hpp"
 #include "./PriorityObservableTest.h"
+#include "./SafeDeleteTest.h"
+
+TEST_CASE("Task2")
+{
+	SafeDeleteStation observable;
+	SafeDeleteDisplay observer(observable);
+
+	observable.RegisterObserver(observer);
+
+	REQUIRE_NOTHROW(observable.ChangeData());
+}
 
 TEST_CASE("Task3") {
 	PriorityTestObservable observable;

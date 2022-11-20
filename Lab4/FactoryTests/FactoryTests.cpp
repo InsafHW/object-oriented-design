@@ -4,6 +4,8 @@
 #include "../Factory/CShapeFactory.h"
 #include "../Factory/CPictureDraft.h"
 
+// написать тесты для метода Draw у всех фигур
+
 SCENARIO("Factory")
 {
 	GIVEN("Shape factory")
