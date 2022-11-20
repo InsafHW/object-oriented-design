@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adapter", "Adapter.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Task1.Tests", "..\Task1.Tests\Task1.Tests.vcxproj", "{DBC9D786-9C5D-4AC1-9743-63E60372F48A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassAdapter", "..\ClassAdapter\ClassAdapter.vcxproj", "{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{DBC9D786-9C5D-4AC1-9743-63E60372F48A}.Release|x64.Build.0 = Release|x64
 		{DBC9D786-9C5D-4AC1-9743-63E60372F48A}.Release|x86.ActiveCfg = Release|Win32
 		{DBC9D786-9C5D-4AC1-9743-63E60372F48A}.Release|x86.Build.0 = Release|Win32
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Debug|x64.ActiveCfg = Debug|x64
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Debug|x64.Build.0 = Debug|x64
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Debug|x86.ActiveCfg = Debug|Win32
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Debug|x86.Build.0 = Debug|Win32
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Release|x64.ActiveCfg = Release|x64
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Release|x64.Build.0 = Release|x64
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Release|x86.ActiveCfg = Release|Win32
+		{F96B66E8-0A66-45AD-8CD7-5DF4EC95AF82}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

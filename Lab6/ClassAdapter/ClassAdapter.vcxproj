@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dbc9d786-9c5d-4ac1-9743-63e60372f48a}</ProjectGuid>
-    <RootNamespace>Task1Tests</RootNamespace>
+    <ProjectGuid>{f96b66e8-0a66-45ad-8cd7-5df4ec95af82}</ProjectGuid>
+    <RootNamespace>ClassAdapter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,10 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Task1.Tests.cpp" />
+    <ClCompile Include="ClassAdapter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Adapter\ModernGraphicsLibAdapter.h" />
+    <ClInclude Include="app.h" />
+    <ClInclude Include="graphics_lib.h" />
+    <ClInclude Include="ModernGraphicsLibAdapter.h" />
+    <ClInclude Include="modern_graphics_lib.h" />
+    <ClInclude Include="shape_drawing_lib.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

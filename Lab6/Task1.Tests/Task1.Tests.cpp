@@ -9,11 +9,36 @@ SCENARIO("Object adapter")
 	{
 		std::ostringstream output;
 		modern_graphics_lib::CModernGraphicsRenderer renderer(output);
-		ModernGraphicsLibAdapter adapter(renderer);
-		WHEN("Call only moveTo method output must be empty")
+		WHEN("When adapter creates draw mode must be setted up and unsetted at the end of programm")
 		{
-			adapter.MoveTo(0, 0);
-			REQUIRE(output.str() == "");
+			{
+				ModernGraphicsLibAdapter adapter(renderer);
+				adapter.MoveTo(0, 0);
+			}
+			REQUIRE(output.str() == "<draw>\n</draw>\n");
+		}
+		WHEN("Addapter creates, default pointer is setted to 0,0")
+		{
+			{
+				ModernGraphicsLibAdapter adapter(renderer);
+				adapter.LineTo(10, 10);
+			}
+			REQUIRE(output.str() == "<draw>\n"
+				"  <line fromX=\"0\" fromY=\"0\" toX=\"10\" toY=\"10\"/>\n"
+				"</draw>\n"
+			);
+		}
+		WHEN("Call with moveTo, default pointer changes")
+		{
+			{
+				ModernGraphicsLibAdapter adapter(renderer);
+				adapter.MoveTo(20, 20);
+				adapter.LineTo(10, 10);
+			}
+			REQUIRE(output.str() == "<draw>\n"
+				"  <line fromX=\"20\" fromY=\"20\" toX=\"10\" toY=\"10\"/>\n"
+				"</draw>\n"
+			);
 		}
 	}
 }
